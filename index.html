@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta name="color-scheme" content="light">
+<title>FOMEKS QOLDIQ — UzQoldiq.uz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="brand">
+      <div class="brand-mark">♻️</div>
+      <div>
+        <div class="brand-name">Fomeks Qoldiq</div>
+        <div class="brand-sub">UzQoldiq.uz</div>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <nav class="tabs">
+        <button data-view="home" class="active" data-i18n="nav.home"></button>
+        <button data-view="account" data-i18n="nav.account"></button>
+        <button data-view="order" data-i18n="nav.order"></button>
+      </nav>
+      <div class="lang-switch">
+        <button data-lang="uz" class="active">UZ</button>
+        <button data-lang="ru">RU</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== HOME ===================== -->
+<section class="view active" id="view-home">
+  <div class="wrap">
+    <div class="hero">
+      <div class="kicker" id="phone-kicker" style="cursor:pointer;">📞 +998 97 721 26 09</div>
+      <h1><span data-i18n="hero.title1"></span> <span class="script" data-i18n="hero.title2"></span></h1>
+      <p class="lead" data-i18n="hero.lead"></p>
+      <div class="price-strip">💵 <span data-i18n="hero.priceLabel"></span> <span class="num">3 000 so'm</span>/kg</div>
+      <div style="margin-top:14px;"><a href="https://t.me/+AM-9W3_h9eYxZjQy" target="_blank" class="btn ghost" style="width:auto;display:inline-flex;padding:10px 18px;font-size:13.5px;" data-i18n="hero.joinGroup"></a></div>
+    </div>
+    <div class="ribbon"></div>
+
+    <div class="stats">
+      <div class="stat-card"><div class="v" id="s-total-kg">—</div><div class="l" data-i18n="stat.kg"></div></div>
+      <div class="stat-card"><div class="v" id="s-suppliers">—</div><div class="l" data-i18n="stat.suppliers"></div></div>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <div class="sec-head"><h2 data-i18n="top.title"></h2><div class="note" data-i18n="top.note"></div></div>
+        <div class="board" id="top5-board"></div>
+      </div>
+      <div>
+        <div class="sec-head"><h2 data-i18n="chart.title"></h2><div class="note" data-i18n="chart.note"></div></div>
+        <div class="chart-card"><div class="chart-wrap"><canvas id="monthlyChart"></canvas></div></div>
+      </div>
+    </div>
+
+    <div class="sec-head"><h2 data-i18n="game.title"></h2><div class="note" id="game-round-note"></div></div>
+    <div class="game-card" id="game-card">
+
+      <div id="round1-wrap">
+        <div class="r1-scene">
+          <div class="r1-guy">🧑</div>
+          <div class="r1-bags" id="r1-bags"></div>
+          <div class="r1-arrow">➡️</div>
+          <div class="r1-machine" id="r1-machine">♻️</div>
+          <div class="r1-arrow">➡️</div>
+          <div class="r1-money-stack">💰</div>
+        </div>
+        <div class="r1-money-total" id="r1-money-total">0 so'm</div>
+        <div class="game-hint" id="r1-hint" data-i18n="game.r1hintStart"></div>
+        <button class="btn gold" id="r1-btn" style="max-width:240px;margin:12px auto 0;" data-i18n="game.r1btn"></button>
+      </div>
+
+      <div id="round2-wrap" style="display:none;">
+        <div class="game-tree-wrap" id="game-tree-wrap"></div>
+        <div class="game-can" id="game-can">🪣</div>
+        <div class="game-hint" id="game-hint" data-i18n="game.hintStart"></div>
+        <button class="btn ghost" id="game-reset-btn" style="max-width:200px;display:none;margin-top:14px;" data-i18n="game.reset"></button>
+      </div>
+
+    </div>
+    <div class="game-particles" id="game-particles"></div>
+
+    <div class="sec-head"><h2 data-i18n="how.title"></h2><div class="note" data-i18n="how.note"></div></div>
+    <div class="how">
+      <div class="how-card"><div class="ic">🧺</div><h4 data-i18n="how1.title"></h4><p data-i18n="how1.text"></p></div>
+      <div class="how-card"><div class="ic">🚛</div><h4 data-i18n="how2.title"></h4><p data-i18n="how2.text"></p></div>
+      <div class="how-card"><div class="ic">💳</div><h4 data-i18n="how3.title"></h4><p data-i18n="how3.text"></p></div>
+    </div>
+
+    <footer data-i18n="footer.text"></footer>
+  </div>
+</section>
+
+<!-- ===================== ACCOUNT ===================== -->
+<section class="view" id="view-account">
+  <div class="center-wrap" id="login-box">
+    <div class="login-card">
+      <div class="ic">🔑</div>
+      <h2 data-i18n="login.title"></h2>
+      <p data-i18n="login.text"></p>
+      <input class="code-input" id="code-input" maxlength="4" inputmode="numeric" placeholder="0000">
+      <button class="btn" id="login-btn" data-i18n="login.btn"></button>
+      <div class="err-msg" id="login-err"></div>
+      <div class="demo-hint"><span data-i18n="login.demoHint"></span> <code id="demo-code">0000</code></div>
+    </div>
+  </div>
+
+  <div class="wrap" id="acc-dashboard" style="display:none;">
+    <div class="acc-head">
+      <div>
+        <div class="name" id="acc-name">—</div>
+        <div class="code-tag" id="acc-meta">—</div>
+      </div>
+      <button class="logout" id="logout-btn" data-i18n="acc.logout"></button>
+    </div>
+
+    <div class="stats" style="grid-template-columns:repeat(3,1fr);">
+      <div class="stat-card"><div class="v" id="acc-kg">—</div><div class="l" data-i18n="acc.kg"></div></div>
+      <div class="stat-card"><div class="v" id="acc-sum">—</div><div class="l" data-i18n="acc.sum"></div></div>
+      <div class="stat-card"><div class="v" id="acc-paid">—</div><div class="l" data-i18n="acc.paid"></div></div>
+    </div>
+
+    <div class="tree-card" id="tree-card">
+      <div class="tree-badge">
+        <div class="tree-emoji" id="tree-emoji">🌱</div>
+        <div>
+          <div class="tree-level" id="tree-level">—</div>
+          <div class="tree-title" id="tree-title">—</div>
+        </div>
+      </div>
+      <div class="tree-desc" id="tree-desc"></div>
+      <div class="tree-svg-wrap" id="tree-svg-wrap"></div>
+      <div class="tree-count" id="tree-count"></div>
+    </div>
+
+    <div class="sec-head"><h2 data-i18n="acc.historyTitle"></h2><div class="note" id="acc-count">—</div></div>
+    <div class="board scroll-x" style="padding:6px 0;">
+      <table class="hist" id="acc-history">
+        <thead><tr>
+          <th data-i18n="acc.thDate"></th><th data-i18n="acc.thKg"></th><th data-i18n="acc.thSum"></th><th data-i18n="acc.thStatus"></th><th data-i18n="acc.thPhoto"></th><th data-i18n="acc.thReceipt"></th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <div style="margin:24px 0 40px;">
+      <button class="btn gold" id="acc-order-btn" data-i18n="acc.orderBtn"></button>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ORDER ===================== -->
+<section class="view" id="view-order">
+  <div class="wrap">
+    <div class="sec-head"><h2 data-i18n="order.title"></h2><div class="note" data-i18n="order.note"></div></div>
+
+    <form id="order-form" name="fomeks-order" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="fomeks-order">
+      <p style="display:none;"><label>Don't fill this: <input name="bot-field"></label></p>
+      <div class="form-grid">
+        <div class="field"><label data-i18n="order.name"></label><input type="text" id="f-name" required></div>
+        <div class="field"><label data-i18n="order.code"></label><input type="text" id="f-code" maxlength="4" placeholder="0000"></div>
+        <div class="field"><label data-i18n="order.phone"></label><input type="tel" id="f-phone" required placeholder="+998 90 123 45 67"></div>
+        <div class="field"><label data-i18n="order.kg"></label><input type="number" id="f-kg" min="1" required placeholder="200"></div>
+        <div class="field"><label data-i18n="order.address"></label><input type="text" id="f-address" required></div>
+        <div class="field full">
+          <label data-i18n="order.location"></label>
+          <div style="display:flex;gap:8px;">
+            <input type="text" id="f-location" readonly data-i18n-ph="order.locationPh" style="flex:1;">
+            <button type="button" class="icon-btn" id="loc-btn" style="flex:none;" data-i18n="order.locationBtn"></button>
+          </div>
+        </div>
+        <div class="field"><label data-i18n="order.card"></label><input type="text" id="f-card" inputmode="numeric" placeholder="8600 1234 5678 9012"></div>
+        <div class="field"><label data-i18n="order.cardName"></label><input type="text" id="f-cardname" placeholder="ISMOV FAMILIYA"></div>
+        <div class="field full"><label data-i18n="order.note"></label><textarea id="f-note"></textarea></div>
+      </div>
+      <button class="btn gold" type="submit" style="max-width:280px;" data-i18n="order.submit"></button>
+    </form>
+
+    <div class="success-box" id="order-success" style="display:none;">
+      <div class="ic">✅</div>
+      <h3 data-i18n="order.successTitle"></h3>
+      <p id="success-text"></p>
+      <button class="btn ghost" style="margin-top:20px;max-width:220px;" id="order-again-btn" data-i18n="order.again"></button>
+    </div>
+
+    <div class="badge-note">📨 <span data-i18n="order.badge"></span></div>
+  </div>
+</section>
+
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal-box" id="modal-box"></div>
+</div>
+
+<script src="/data.js"></script>
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>
